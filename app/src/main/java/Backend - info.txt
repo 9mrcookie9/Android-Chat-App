@@ -1,0 +1,66 @@
+Communication with server.
+
+Server connection: url + vars;
+
+Get Messages -> Send by http vars{
+    request = "getChat",
+    room = roomName,
+    password = roomPassword
+
+    OnPass{
+        Get JSON{
+            {"data":
+                [
+                    {                   Examples:
+                        "id": String,       <-"0"
+                        "nick": String,     <-"User"
+                        "message": String,  <-"Text",
+                        "date": String      <-"2016-07-1 22:18"
+                    }
+                ]
+            }
+        }
+    }
+    OnFail{
+        HandleError();
+    }
+}
+
+Send Message -> Send by http vars{
+    request = "sendChat",
+    nick = userNick,
+    message = userMessage,
+    room = userRoom,
+    password = userPassword
+
+    OnPass{         Example:
+        Get String;    <-"Pass"
+    }
+    OnFail{
+        HandleError();
+    }
+}
+
+Example:
+    String $request = "getChat",
+    String $room = "root",
+    String $password = "root"
+    Response response = new Response();
+
+    client.get(MainActivity.this,
+                url +
+                "request="+$request+
+                "&room="+$room+
+                "&password="+$password
+                    , new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+               //Parse data to json
+               response = gson.fromJson(new String(responseBody),Response.class);
+               SetView();
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                fail();
+            }
+        });
