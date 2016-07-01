@@ -8,8 +8,8 @@ android {
         applicationId 'com.officialcookiegames.chatApp'
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 2
-        versionName "0.1a"
+        versionCode 3
+        versionName "0.2a"
         multiDexEnabled true
     }
     buildTypes {

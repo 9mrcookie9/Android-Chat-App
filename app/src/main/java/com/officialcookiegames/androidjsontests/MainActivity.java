@@ -37,7 +37,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
     //Server url
-    private String url = "http://"+Url.pageUrl+"/php/DoFunctions.php?request=";
+    private String url = "http://"+Url.pageUrl+"/php/DoFunctions.php?version="+Strings.version()+"&request=";
     //Variables
     private Gson gson;
     private AsyncHttpClient client;

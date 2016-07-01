@@ -21,4 +21,5 @@ public final class Strings {
         static String emptyMessage = "Uzupełnij pseudonim lub wiadomość!";
         static String[] menu = {"Czat","Menu"};
     }
+    public static String version(){return BuildConfig.VERSION_NAME;}
 }
