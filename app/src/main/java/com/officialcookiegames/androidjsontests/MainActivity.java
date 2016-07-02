@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
     void SendData(){
         if(isNetworkAvailable() && lastToSend != message.getText().toString()) {
             lastToSend = message.getText().toString();
-            if (lastToSend != null && lastToSend != "" && user.name != null && user.name != ""){
+            if (lastToSend != null && !lastToSend.matches("") && user.name != null && !user.name.replaceAll("\\s+","").matches("")){
                 message.setText("");
                 client.get(MainActivity.this, url + "sendChat&nick=" + user.name + "&message=" + lastToSend + "&room="+ user.room + "&password=" + user.password, new AsyncHttpResponseHandler() {
                     @Override
